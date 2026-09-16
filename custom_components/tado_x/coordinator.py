@@ -130,6 +130,8 @@ class TadoXData:
     flow_temp_auto_adaptation: bool = False
     flow_temp_auto_value: int | None = None
     has_flow_temp_control: bool = False
+    # Domestic hot water state (e.g., OFF, SCHEDULE_ON, SCHEDULE_OFF, BOOST)
+    dhw_state: str | None = None
 
 
 def _serialize_tado_data(data: TadoXData) -> dict:
@@ -225,6 +227,7 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
         enable_air_comfort: bool = True,
         enable_running_times: bool = True,
         enable_flow_temp: bool = True,
+        enable_hot_water: bool = True,
     ) -> None:
         """Initialize the coordinator."""
         # Determine scan interval based on subscription tier if not explicitly set
@@ -253,6 +256,7 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
         self.enable_air_comfort = enable_air_comfort
         self.enable_running_times = enable_running_times
         self.enable_flow_temp = enable_flow_temp
+        self.enable_hot_water = enable_hot_water
 
         # Persistent cache using HA storage
         self._store: Store = Store(hass, _STORAGE_VERSION, f"{DOMAIN}.{entry_id}")
@@ -264,8 +268,8 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
             "Auto-Assist" if api.has_auto_assist else "Free"
         )
         _LOGGER.info(
-            "Optional features - Weather: %s, Mobile devices: %s, Air comfort: %s, Running times: %s, Flow temp: %s",
-            enable_weather, enable_mobile_devices, enable_air_comfort, enable_running_times, enable_flow_temp
+            "Optional features - Weather: %s, Mobile devices: %s, Air comfort: %s, Running times: %s, Flow temp: %s, Hot water: %s",
+            enable_weather, enable_mobile_devices, enable_air_comfort, enable_running_times, enable_flow_temp, enable_hot_water
         )
 
     def update_scan_interval(self, new_interval: int) -> None:
@@ -285,6 +289,8 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
         if self.enable_air_comfort:
             calls += 1
         if self.enable_running_times:
+            calls += 1
+        if self.enable_hot_water:
             calls += 1
         return calls
 
@@ -316,6 +322,12 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
             presence = home_state.get("presence")
             presence_locked = home_state.get("presenceLocked", False)
 
+            # Get domestic hot water state (optional)
+            dhw_state = None
+            if self.enable_hot_water:
+                dhw_state_response = await self.api.get_domestic_hot_water_state()
+                dhw_state = dhw_state_response.get("state")
+            
             # Get weather data (optional)
             weather = None
             if self.enable_weather:
@@ -342,6 +354,7 @@ class TadoXDataUpdateCoordinator(DataUpdateCoordinator[TadoXData]):
                 presence=presence,
                 presence_locked=presence_locked,
                 weather=weather,
+                dhw_state=dhw_state
             )
 
             # Process rooms and devices
