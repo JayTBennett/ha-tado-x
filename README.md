@@ -1,8 +1,14 @@
 # Tado X Integration for Home Assistant
 
+> ## About this fork
+>
+> This repository is a fork of [donalfenwick/ha-tado-x](https://github.com/donalfenwick/ha-tado-x) (LeyroyK), which is itself a fork of [exabird/ha-tado-x](https://github.com/exabird/ha-tado-x).
+>
+> **All credit goes to those original creators.** I wrote none of this code. LeyroyK's work — including the DHW (hot water) control branch merged here — works for me, so I'm keeping a copy in this repo purely so I can install it into my own Home Assistant.
+>
+> **I make no commitment to maintaining this fork.** Please raise issues, feature requests and pull requests against the upstream repositories, not here.
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/exabird/ha-tado-x)](https://github.com/exabird/ha-tado-x/releases)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/exabird)
 
 A Home Assistant custom integration for **Tado X** devices (the new generation of Tado smart thermostats and radiator valves).
 
@@ -13,12 +19,12 @@ A Home Assistant custom integration for **Tado X** devices (the new generation o
 ## Quick Installation (HACS)
 
 ### Step 1: Add the repository
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=exabird&repository=ha-tado-x&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=JayTBennett&repository=ha-tado-x&category=integration)
 
 **Or manually:**
 1. Open HACS in Home Assistant
 2. Click **⋮** (top right) → **Custom repositories**
-3. Add `https://github.com/exabird/ha-tado-x` as **Integration**
+3. Add `https://github.com/JayTBennett/ha-tado-x` as **Integration**
 
 ### Step 2: Install & Restart
 1. Search "Tado X" in HACS → **Download**
@@ -120,7 +126,7 @@ The API call counter is **persisted across restarts** - your quota tracking cont
 
 ## Manual Installation
 
-1. Download `custom_components/tado_x` from this repository
+1. Download `custom_components/tado_x` from [this repository](https://github.com/JayTBennett/ha-tado-x)
 2. Copy to your `config/custom_components/` directory
 3. Restart Home Assistant
 
@@ -128,11 +134,11 @@ The API call counter is **persisted across restarts** - your quota tracking cont
 
 ## Contributing
 
-This is a community-maintained integration for Tado X devices. Contributions are welcome!
+This is a community-maintained integration for Tado X devices. Contributions are welcome — but please direct them upstream (see [About this fork](#about-this-fork)).
 
 ### Reporting Issues
 
-Found a bug or have a feature request? Please use our issue templates:
+Found a bug or have a feature request? Please use the upstream issue templates:
 - [Report a Bug](https://github.com/exabird/ha-tado-x/issues/new?template=bug_report.md)
 - [Request a Feature](https://github.com/exabird/ha-tado-x/issues/new?template=feature_request.md)
 
@@ -140,7 +146,7 @@ Found a bug or have a feature request? Please use our issue templates:
 
 Want to contribute code? Great! Here's how to get started:
 
-1. Fork this repository
+1. Fork the upstream repository
 2. Create a branch for your feature: `git checkout -b feature/my-feature`
 3. Make your changes
 4. Test thoroughly with your Tado X setup
@@ -210,24 +216,16 @@ And unlike most smart home manufacturers, Tado provides **no local API** - neith
 
 ## Support the Project
 
-If you find this integration useful and it saved you time or solved your Tado X / Home Assistant integration challenges, consider supporting its continued development!
+If you find this integration useful, support the original author — not this fork:
 
 <a href="https://buymeacoffee.com/exabird" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
 </a>
 
-Your support helps me:
-- Dedicate time to maintaining and improving this integration
-- Respond quickly to bug reports and feature requests
-- Keep the project compatible with Home Assistant updates
-- Add new features from the roadmap
-
-Every coffee fuels another contribution to the community!
-
 ## Support
 
 - **Community Forum:** Discuss on [Home Assistant Community](https://community.home-assistant.io/)
-- **Issues:** Report bugs or request features on [GitHub Issues](https://github.com/exabird/ha-tado-x/issues)
+- **Issues:** Report bugs or request features on [upstream GitHub Issues](https://github.com/exabird/ha-tado-x/issues)
 - **Hardware Support:** For Tado device issues, contact [Tado Support](https://support.tado.com/)
 
 ## License
