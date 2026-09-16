@@ -214,14 +214,6 @@ And unlike most smart home manufacturers, Tado provides **no local API** - neith
 - Need features that Matter simply doesn't support
 - Want to actually use the API they're paying for
 
-## Support the Project
-
-If you find this integration useful, support the original author — not this fork:
-
-<a href="https://buymeacoffee.com/exabird" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
-</a>
-
 ## Support
 
 - **Community Forum:** Discuss on [Home Assistant Community](https://community.home-assistant.io/)
